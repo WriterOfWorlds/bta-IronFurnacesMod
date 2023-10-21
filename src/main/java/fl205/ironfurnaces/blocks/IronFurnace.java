@@ -1,11 +1,15 @@
 package fl205.ironfurnaces.blocks;
 
+import fl205.ironfurnaces.tileEntities.TileEntityIronFurnace;
+import net.minecraft.client.gui.GuiFurnace;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockTileEntityRotatable;
 import net.minecraft.core.block.entity.TileEntity;
+import net.minecraft.core.block.entity.TileEntityFurnace;
 import net.minecraft.core.block.material.Material;
 
-import net.minecraft.core.block.entity.TileEntityFurnace;
+import net.minecraft.core.entity.EntityItem;
+import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
@@ -14,8 +18,14 @@ import fl205.ironfurnaces.IronFurnaces;
 
 import java.util.Random;
 
+import static fl205.ironfurnaces.IronFurnaces.config;
+
 public class IronFurnace extends BlockTileEntityRotatable {
 	protected final boolean isActive;
+
+	protected Random furnaceRand = new Random();
+
+	protected static boolean keepFurnaceInventory = false;
 
 	public IronFurnace(String key, int id, Material material, boolean flag) {
 		super(key, id, material);
@@ -24,7 +34,7 @@ public class IronFurnace extends BlockTileEntityRotatable {
 
 	//@Override
 	protected TileEntity getNewBlockEntity() {
-		return new TileEntityFurnace();
+		return new TileEntityIronFurnace();
 	}
 
 	public void onBlockAdded(World world, int i, int j, int k) {
@@ -66,5 +76,68 @@ public class IronFurnace extends BlockTileEntityRotatable {
 			}
 
 		}
+	}
+
+	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
+		if (!world.isClientSide) {
+			TileEntityIronFurnace tileentityironfurnace = (TileEntityIronFurnace)world.getBlockTileEntity(x, y, z);
+			player.displayGUIFurnace(tileentityironfurnace);
+		}
+
+		return true;
+	}
+
+	public static void updateFurnaceBlockState(boolean lit, World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+		TileEntity tileentity = world.getBlockTileEntity(x, y, z);
+		if (tileentity == null) {
+			String msg = "Furnace is missing Tile Entity at x: " + x + " y: " + y + " z: " + z + ", block will be removed!";
+			world.setBlockWithNotify(x, y, z, 0);
+			System.out.println(msg);
+		} else {
+			keepFurnaceInventory = true;
+			if (lit) {
+				world.setBlockWithNotify(x, y, z, config.getInt("ids.ironFurnaceActiveID"));
+			} else {
+				world.setBlockWithNotify(x, y, z, config.getInt("ids.ironFurnaceIdleID"));
+			}
+
+			keepFurnaceInventory = false;
+			world.setBlockMetadataWithNotify(x, y, z, meta);
+			tileentity.validate();
+			world.setBlockTileEntity(x, y, z, tileentity);
+		}
+	}
+
+	public void onBlockRemoval(World world, int x, int y, int z) {
+		if (!keepFurnaceInventory) {
+			TileEntityIronFurnace tileentityironfurnace = (TileEntityIronFurnace) world.getBlockTileEntity(x, y, z);
+
+			for (int l = 0; l < tileentityironfurnace.getSizeInventory(); ++l) {
+				ItemStack itemstack = tileentityironfurnace.getStackInSlot(l);
+				if (itemstack != null) {
+					float f = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
+					float f1 = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
+					float f2 = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
+
+					while (itemstack.stackSize > 0) {
+						int i1 = this.furnaceRand.nextInt(21) + 10;
+						if (i1 > itemstack.stackSize) {
+							i1 = itemstack.stackSize;
+						}
+
+						itemstack.stackSize -= i1;
+						EntityItem entityitem = new EntityItem(world, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2), new ItemStack(itemstack.itemID, i1, itemstack.getMetadata()));
+						float f3 = 0.05F;
+						entityitem.xd = (double) ((float) this.furnaceRand.nextGaussian() * f3);
+						entityitem.yd = (double) ((float) this.furnaceRand.nextGaussian() * f3 + 0.2F);
+						entityitem.zd = (double) ((float) this.furnaceRand.nextGaussian() * f3);
+						world.entityJoinedWorld(entityitem);
+					}
+				}
+			}
+		}
+
+		super.onBlockRemoval(world, x, y, z);
 	}
 }
