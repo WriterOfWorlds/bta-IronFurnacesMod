@@ -1,0 +1,8 @@
+tile.ironfurnaces.furnace.iron.idle.name=Fornalha de Ferro
+tile.ironfurnaces.furnace.iron.idle.desc=Semelhante a uma fornalha de pedra, mas mais rápida e eficiente.
+
+tile.ironfurnaces.furnace.iron.active.name=Fornalha de Ferro Acesa
+tile.ironfurnaces.furnace.iron.active.desc=Semelhante a uma fornalha de pedra, mas mais rápida e eficiente.
+
+tile.furnace.stone.idle.name=Fornalha de Pedra
+tile.furnace.stone.active.name=Fornalha de Pedra Acesa

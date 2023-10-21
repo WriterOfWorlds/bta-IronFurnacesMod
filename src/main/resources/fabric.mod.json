@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "ironfurnaces",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Iron Furnaces",
+  "description": "A simple mod that adds higher tiered furnaces.",
   "authors": [
-    "Turnip Labs"
+    "FutureLizard205"
   ],
   "contact": {
     "homepage": "",
@@ -18,11 +18,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-        "turniplabs.examplemod.ExampleMod"
+      "fl205.ironfurnaces.IronFurnaces"
     ]
   },
   "mixins": [
-      "examplemod.mixins.json"
+		"ironfurnaces.mixins.json"
   ],
 
   "depends": {

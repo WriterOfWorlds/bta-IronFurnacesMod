@@ -1,0 +1,8 @@
+tile.ironfurnaces.furnace.iron.idle.name=Iron Furnace
+tile.ironfurnaces.furnace.iron.idle.desc=Like a regular stone furnace, but faster and more efficient.
+
+tile.ironfurnaces.furnace.iron.active.name=Lit Iron Furnace
+tile.ironfurnaces.furnace.iron.active.desc=Like a regular stone furnace, but faster and more efficient.
+
+tile.furnace.stone.idle.name=Stone Furnace
+tile.furnace.stone.active.name=Lit Stone Furnace
