@@ -5,7 +5,6 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.entity.TileEntityFurnace;
 import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.crafting.recipe.RecipesFurnace;
-import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 
@@ -23,10 +22,6 @@ public class TileEntityIronFurnace extends TileEntityFurnace {
 
 	public String getInvName() {
 		return "Iron Furnace";
-	}
-
-	public int getCookProgressScaled(int i) {
-		return this.maxCookTime == 0 ? 0 : this.currentCookTime * i / this.maxCookTime;
 	}
 
 	public void updateEntity() {
@@ -112,15 +107,6 @@ public class TileEntityIronFurnace extends TileEntityFurnace {
 
 	private int getBurnTimeFromItem(ItemStack itemStack) {
 		return itemStack == null ? 0 : ((fuelYieldModifier * (LookupFuelFurnace.instance.getFuelYield(itemStack.getItem().id)))/100);
-		//return itemStack == null ? 0 : (LookupFuelFurnace.instance.getFuelYield(itemStack.getItem().id));
-	}
-
-	public boolean canInteractWith(EntityPlayer entityplayer) {
-		if (this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this) {
-			return false;
-		} else {
-			return entityplayer.distanceToSqr((double)this.xCoord + 0.5, (double)this.yCoord + 0.5, (double)this.zCoord + 0.5) <= 64.0;
-		}
 	}
 
 }
