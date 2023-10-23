@@ -26,6 +26,8 @@ public class IronFurnaces implements ModInitializer {
 		Properties prop = new Properties();
 		prop.setProperty("ids.ironFurnaceIdleID", "664");
 		prop.setProperty("ids.ironFurnaceActiveID", "665");
+		prop.setProperty("ids.goldFurnaceIdleID", "666");
+		prop.setProperty("ids.goldFurnaceActiveID", "667");
 		prop.setProperty("speed.ironFurnace", "125");
 		prop.setProperty("fuelYield.ironFurnace", "125");
 		config = new ConfigHandler(MOD_ID, prop);
@@ -37,7 +39,10 @@ public class IronFurnaces implements ModInitializer {
 		.setBlockSound(BlockSounds.METAL)
 		.setHardness(5.0F)
 		.setResistance(10.0F)
-		//.setTextures("crate.png")
+		.setSideTextures("ironfurnaceside.png")
+		.setNorthTexture("ironfurnaceidlefront.png")
+		.setBottomTexture("ironfurnaceside.png")
+		.setTopTexture("ironfurnaceside.png")
 		.setImmovable()
 		.setTags(BlockTags.MINEABLE_BY_PICKAXE)
 		.build(new IronFurnace("furnace.iron.idle", config.getInt("ids.ironFurnaceIdleID"), Material.metal, false));
@@ -46,11 +51,40 @@ public class IronFurnaces implements ModInitializer {
 		.setBlockSound(BlockSounds.METAL)
 		.setHardness(5.0F)
 		.setResistance(10.0F)
+		.setSideTextures("ironfurnaceside.png")
+		.setNorthTexture("ironfurnaceactivefront.png")
+		.setBottomTexture("ironfurnaceside.png")
+		.setTopTexture("ironfurnaceside.png")
 		.setLuminance(13)
 		.setImmovable()
 		.setTags(BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.MINEABLE_BY_PICKAXE)
 		.build(new IronFurnace("furnace.iron.active", config.getInt("ids.ironFurnaceActiveID"), Material.metal, true));
+	/*
+	public static final Block furnaceGoldIdle = new BlockBuilder(MOD_ID)
+		.setBlockSound(BlockSounds.METAL)
+		.setHardness(5.0F)
+		.setResistance(10.0F)
+		.setSideTextures("goldfurnaceside.png")
+		.setNorthTexture("goldfurnaceidlefront.png")
+		.setBottomTexture("goldfurnaceside.png")
+		.setTopTexture("goldfurnaceside.png")
+		.setImmovable()
+		.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+		.build(new IronFurnace("furnace.gold.idle", config.getInt("ids.goldFurnaceIdleID"), Material.metal, false));
 
+	public static final Block furnaceGoldActive = new BlockBuilder(MOD_ID)
+		.setBlockSound(BlockSounds.METAL)
+		.setHardness(5.0F)
+		.setResistance(10.0F)
+		.setSideTextures("goldfurnaceside.png")
+		.setNorthTexture("goldfurnaceactivefront.png")
+		.setBottomTexture("goldfurnaceside.png")
+		.setTopTexture("goldfurnaceside.png")
+		.setLuminance(13)
+		.setImmovable()
+		.setTags(BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.MINEABLE_BY_PICKAXE)
+		.build(new IronFurnace("furnace.gold.active", config.getInt("ids.goldFurnaceActiveID"), Material.metal, true));
+	*/
 	@Override
     public void onInitialize() {
         LOGGER.info("IronFurnaces mod initialized.");
