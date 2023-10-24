@@ -1,39 +1,34 @@
 package fl205.ironfurnaces.blocks;
 
-import fl205.ironfurnaces.tileEntities.TileEntityIronFurnace;
-import net.minecraft.client.gui.GuiFurnace;
-import net.minecraft.core.block.Block;
+import fl205.ironfurnaces.IronFurnaces;
+import fl205.ironfurnaces.tileEntities.TileEntitySteelFurnace;
 import net.minecraft.core.block.BlockTileEntityRotatable;
 import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.block.entity.TileEntityFurnace;
 import net.minecraft.core.block.material.Material;
-
 import net.minecraft.core.entity.EntityItem;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
-import fl205.ironfurnaces.IronFurnaces;
-
 import java.util.Random;
 
 import static fl205.ironfurnaces.IronFurnaces.config;
 
-public class IronFurnace extends BlockTileEntityRotatable {
+public class SteelFurnace extends BlockTileEntityRotatable {
 	protected final boolean isActive;
 
 	protected Random furnaceRand = new Random();
 
 	protected static boolean keepFurnaceInventory = false;
 
-	public IronFurnace(String key, int id, Material material, boolean flag) {
+	public SteelFurnace(String key, int id, Material material, boolean flag) {
 		super(key, id, material);
 		this.isActive = flag;
 	}
 
 	protected TileEntity getNewBlockEntity() {
-		return new TileEntityIronFurnace();
+		return new TileEntitySteelFurnace();
 	}
 
 	public void onBlockAdded(World world, int i, int j, int k) {
@@ -46,7 +41,7 @@ public class IronFurnace extends BlockTileEntityRotatable {
 			case PICK_BLOCK:
 			case PROPER_TOOL:
 			case SILK_TOUCH:
-				return new ItemStack[]{new ItemStack(IronFurnaces.furnaceIronIdle)};
+				return new ItemStack[]{new ItemStack(IronFurnaces.furnaceSteelIdle)};
 			default:
 				return null;
 		}
@@ -79,8 +74,8 @@ public class IronFurnace extends BlockTileEntityRotatable {
 
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		if (!world.isClientSide) {
-			TileEntityIronFurnace tileentityironfurnace = (TileEntityIronFurnace)world.getBlockTileEntity(x, y, z);
-			player.displayGUIFurnace(tileentityironfurnace);
+			TileEntitySteelFurnace tileentitysteelfurnace = (TileEntitySteelFurnace)world.getBlockTileEntity(x, y, z);
+			player.displayGUIFurnace(tileentitysteelfurnace);
 		}
 
 		return true;
@@ -96,9 +91,9 @@ public class IronFurnace extends BlockTileEntityRotatable {
 		} else {
 			keepFurnaceInventory = true;
 			if (lit) {
-				world.setBlockWithNotify(x, y, z, config.getInt("ids.ironFurnaceActiveID"));
+				world.setBlockWithNotify(x, y, z, config.getInt("ids.steelFurnaceActiveID"));
 			} else {
-				world.setBlockWithNotify(x, y, z, config.getInt("ids.ironFurnaceIdleID"));
+				world.setBlockWithNotify(x, y, z, config.getInt("ids.steelFurnaceIdleID"));
 			}
 
 			keepFurnaceInventory = false;
@@ -110,10 +105,10 @@ public class IronFurnace extends BlockTileEntityRotatable {
 
 	public void onBlockRemoval(World world, int x, int y, int z) {
 		if (!keepFurnaceInventory) {
-			TileEntityIronFurnace tileentityironfurnace = (TileEntityIronFurnace) world.getBlockTileEntity(x, y, z);
+			TileEntitySteelFurnace tileentitysteelfurnace = (TileEntitySteelFurnace) world.getBlockTileEntity(x, y, z);
 
-			for (int l = 0; l < tileentityironfurnace.getSizeInventory(); ++l) {
-				ItemStack itemstack = tileentityironfurnace.getStackInSlot(l);
+			for (int l = 0; l < tileentitysteelfurnace.getSizeInventory(); ++l) {
+				ItemStack itemstack = tileentitysteelfurnace.getStackInSlot(l);
 				if (itemstack != null) {
 					float f = this.furnaceRand.nextFloat() * 0.8F + 0.1F;
 					float f1 = this.furnaceRand.nextFloat() * 0.8F + 0.1F;

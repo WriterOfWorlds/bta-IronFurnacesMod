@@ -27,7 +27,6 @@ public class GoldFurnace extends BlockTileEntityRotatable {
 		this.isActive = flag;
 	}
 
-	//@Override
 	protected TileEntity getNewBlockEntity() {
 		return new TileEntityGoldFurnace();
 	}
