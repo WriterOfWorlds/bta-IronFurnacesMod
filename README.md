@@ -4,11 +4,11 @@
 
 Details: 
 
-| Furnace Tier | Fuel Yield | Speed |
-| ------------ | ---------- | ----- |
-| Iron         | 125%       | 125%  |
-| Gold         | 85%        | 200%  |
-| Diamond      |            |       |
-| Steel        |            |       |
+| Furnace Tier | Fuel Yield | Speed | IDs     |
+| ------------ | ---------- | ----- | ------- |
+| Iron         | 125%       | 125%  | 664,665 |
+| Gold         | 85%        | 200%  | 666,667 |
+| Diamond      | 150%       | 160%  | 668,669 |
+| Steel        | 250%       | 90%   | 674,675 |
 
-All these values and theblockk ids can be changed through the config file.
+All these values can be changed through the config file.
