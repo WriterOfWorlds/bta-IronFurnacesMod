@@ -109,4 +109,8 @@ public class TileEntityIronFurnace extends TileEntityFurnace {
 		return itemStack == null ? 0 : ((fuelYieldModifier * (LookupFuelFurnace.instance.getFuelYield(itemStack.getItem().id)))/100);
 	}
 
+	@Override
+	public int getCookProgressScaled(int i) {
+		return (super.getCookProgressScaled(i) * speedModifier)/100;
+	}
 }
