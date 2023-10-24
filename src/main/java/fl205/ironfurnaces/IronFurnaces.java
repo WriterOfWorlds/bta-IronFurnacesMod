@@ -5,6 +5,7 @@ import fl205.ironfurnaces.blocks.GoldFurnace;
 import fl205.ironfurnaces.blocks.IronFurnace;
 import fl205.ironfurnaces.blocks.SteelFurnace;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,7 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
 import turniplabs.halplibe.helper.BlockBuilder;
+import turniplabs.halplibe.helper.RecipeHelper;
 import turniplabs.halplibe.util.ConfigHandler;
 
 import java.util.Properties;
@@ -151,6 +153,37 @@ public class IronFurnaces implements ModInitializer {
 
 	@Override
     public void onInitialize() {
-        LOGGER.info("IronFurnaces mod initialized.");
-    }
+
+		//Recipes
+		RecipeHelper.Crafting.createRecipe(furnaceIronIdle, 1, new Object[]{
+			"AAA",
+			"ABA",
+			"AAA",
+			'A', Item.ingotIron,
+			'B', Block.furnaceStoneIdle
+		});
+		RecipeHelper.Crafting.createRecipe(furnaceGoldIdle, 1, new Object[]{
+			"AAA",
+			"ABA",
+			"AAA",
+			'A', Item.ingotGold,
+			'B', furnaceIronIdle
+		});
+		RecipeHelper.Crafting.createRecipe(furnaceDiamondIdle, 1, new Object[]{
+			"AAA",
+			"ABA",
+			"AAA",
+			'A', Item.diamond,
+			'B', furnaceGoldIdle
+		});
+		RecipeHelper.Crafting.createRecipe(furnaceSteelIdle, 1, new Object[]{
+			"AAA",
+			"ABA",
+			"AAA",
+			'A', Item.ingotSteel,
+			'B', furnaceIronIdle
+		});
+
+		LOGGER.info("IronFurnaces mod initialized.");
+	}
 }
