@@ -1,8 +1,14 @@
-tile.ironfurnaces.furnace.iron.idle.name=Iron Furnace
-tile.ironfurnaces.furnace.iron.idle.desc=Like a regular stone furnace, but faster and more efficient.
-
-tile.ironfurnaces.furnace.iron.active.name=Lit Iron Furnace
-tile.ironfurnaces.furnace.iron.active.desc=Like a regular stone furnace, but faster and more efficient.
-
 tile.furnace.stone.idle.name=Stone Furnace
 tile.furnace.stone.active.name=Lit Stone Furnace
+
+
+tile.ironfurnaces.furnace.iron.idle.name=Iron Furnace
+tile.ironfurnaces.furnace.iron.active.name=Lit Iron Furnace
+tile.ironfurnaces.furnace.iron.idle.desc=Like a regular stone furnace, but faster and more efficient.
+tile.ironfurnaces.furnace.iron.active.desc=Like a regular stone furnace, but faster and more efficient.
+
+tile.ironfurnaces.furnace.gold.idle.name=Gold Furnace
+tile.ironfurnaces.furnace.gold.active.name=Lit Gold Furnace
+tile.ironfurnaces.furnace.gold.idle.desc=Like a regular stone furnace, but much faster and a bit less efficient.
+tile.ironfurnaces.furnace.gold.active.desc=Like a regular stone furnace, but much faster and a bit less efficient.
+

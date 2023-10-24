@@ -1,5 +1,6 @@
 package fl205.ironfurnaces.mixin.entities;
 
+import fl205.ironfurnaces.tileEntities.TileEntityGoldFurnace;
 import fl205.ironfurnaces.tileEntities.TileEntityIronFurnace;
 import net.minecraft.core.block.entity.TileEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,5 +13,6 @@ public class MixinTileEntity {
 
 	static {
 		addMapping(TileEntityIronFurnace.class, "Iron Furnace");
+		addMapping(TileEntityGoldFurnace.class, "Gold Furnace");
 	}
 }
