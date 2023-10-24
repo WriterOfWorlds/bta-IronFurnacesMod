@@ -4,7 +4,7 @@
 
 Details: 
 
-| Furnace Tier | Fuel Yield | Speed | IDs     |
+| Furnace Tier | Fuel Yield | Speed | Block IDs|
 | ------------ | ---------- | ----- | ------- |
 | Iron         | 125%       | 125%  | 664,665 |
 | Gold         | 85%        | 200%  | 666,667 |
