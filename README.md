@@ -1,6 +1,8 @@
-# Iron Furnaces Mod for BTA
+# Iron Furnaces Mod for BTA 1.7.7.0_02
 
-(WIP)
+A simple mod that adds higher tiered furnaces.
+Has BTWaila support.
+
 
 Details: 
 
@@ -12,3 +14,10 @@ Details:
 | Steel        | 250%       | 90%   | 674,675  |
 
 All these values can be changed through the config file.
+
+
+Depedencies:
+- [HalpLibe](https://github.com/Turnip-Labs/bta-halplibe) >= 2.1.7
+
+Recommended:
+- [BTWaila](https://github.com/ToufouMaster/BTWaila) >= 0.2.0
