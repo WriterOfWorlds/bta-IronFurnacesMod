@@ -15,6 +15,9 @@ Details:
 
 All these values can be changed through the config file.
 
+### Known Bugs
+- Progress arrow indicator (GUI) doesn't work properly in multiplayer
+
 
 ## Depedencies:
 - [HalpLibe](https://github.com/Turnip-Labs/bta-halplibe) >= 2.1.7
