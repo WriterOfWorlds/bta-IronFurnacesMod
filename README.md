@@ -16,8 +16,8 @@ Details:
 All these values can be changed through the config file.
 
 
-Depedencies:
+## Depedencies:
 - [HalpLibe](https://github.com/Turnip-Labs/bta-halplibe) >= 2.1.7
 
-Recommended:
+## Recommended:
 - [BTWaila](https://github.com/ToufouMaster/BTWaila) >= 0.2.0
