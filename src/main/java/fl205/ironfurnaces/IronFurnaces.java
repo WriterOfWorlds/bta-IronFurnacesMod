@@ -1,21 +1,26 @@
 package fl205.ironfurnaces;
 
+import fl205.ironfurnaces.modded.BTWaila.IronFurnacesTooltips;
+import net.fabricmc.api.ModInitializer;
+
 import fl205.ironfurnaces.blocks.DiamondFurnace;
 import fl205.ironfurnaces.blocks.GoldFurnace;
 import fl205.ironfurnaces.blocks.IronFurnace;
 import fl205.ironfurnaces.blocks.SteelFurnace;
-import net.fabricmc.api.ModInitializer;
-import net.minecraft.core.item.Item;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.core.item.Item;
 import net.minecraft.client.sound.block.BlockSounds;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
+
 import turniplabs.halplibe.helper.BlockBuilder;
 import turniplabs.halplibe.helper.RecipeHelper;
 import turniplabs.halplibe.util.ConfigHandler;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -183,6 +188,10 @@ public class IronFurnaces implements ModInitializer {
 			'A', Item.ingotSteel,
 			'B', furnaceIronIdle
 		});
+		if (FabricLoader.getInstance().isModLoaded("btwaila")) {
+			IronFurnacesTooltips ironFurnacesTooltips = new IronFurnacesTooltips();
+			ironFurnacesTooltips.addTooltip();
+		}
 
 		LOGGER.info("IronFurnaces mod initialized.");
 	}
