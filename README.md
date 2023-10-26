@@ -15,6 +15,8 @@ Details:
 
 All these values can be changed through the config file.
 
+Note: Fuel Yield here is in terms of items smelt per fuel used, not in terms of time burning per fuel used
+
 ### Known Bugs
 - Progress arrow indicator (GUI) doesn't work properly in multiplayer
 
