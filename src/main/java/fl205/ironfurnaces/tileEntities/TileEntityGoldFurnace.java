@@ -13,6 +13,7 @@ import static fl205.ironfurnaces.IronFurnaces.config;
 public class TileEntityGoldFurnace extends TileEntityFurnace {
 
 	protected final int speedModifier = config.getInt("speed.goldFurnace");
+	protected final int outputYieldModifier = config.getInt("outputYield.goldFurnace");
 	protected final int fuelYieldModifier = (100 * config.getInt("fuelYield.goldFurnace")) / speedModifier;
 
 
@@ -111,4 +112,22 @@ public class TileEntityGoldFurnace extends TileEntityFurnace {
 	public int getCookProgressScaled(int i) {
 		return (super.getCookProgressScaled(i) * speedModifier)/100;
 	}
+
+	@Override
+    public void smeltItem() {
+        if (!this.canSmelt()) {
+            return;
+        }
+        ItemStack itemstack = RecipesFurnace.smelting().getSmeltingResult(this.furnaceItemStacks[0].getItem().id);
+        if (this.furnaceItemStacks[2] == null) {
+            this.furnaceItemStacks[2] = itemstack.copy();
+			this.furnaceItemStacks[2].stackSize = outputYieldModifier;
+        } else if (this.furnaceItemStacks[2].itemID == itemstack.itemID) {
+            this.furnaceItemStacks[2].stackSize += outputYieldModifier;
+        }
+        --this.furnaceItemStacks[0].stackSize;
+        if (this.furnaceItemStacks[0].stackSize <= 0) {
+            this.furnaceItemStacks[0] = null;
+        }
+    }
 }
